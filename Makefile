@@ -1,28 +1,14 @@
-all: nginx mariadb
+all:
+	docker compose -f srcs/docker-compose.yml up -d --build
 
-nginx:
-	sudo docker build -t nginx srcs/requirements/nginx/
+stop:
+	docker compose -f srcs/docker-compose.yml stop
 
-run_nginx: nginx
-	sudo docker run nginx
+re: clean
+	docker compose -f srcs/docker-compose.yml up -d --build
 
-open_nginx: nginx
-	sudo docker run -it nginx
+clean: stop
+	docker compose -f srcs/docker-compose.yml down -v
+	-sudo docker image rm srcs-nginx srcs-wordpress srcs-mariadb
 
-mariadb:
-	sudo docker build -t mariadb srcs/requirements/mariadb/
-
-run_mariadb: mariadb
-	sudo docker run mariadb
-
-open_mariadb: mariadb
-	sudo docker run -it mariadb
-
-wordpress:
-	sudo docker build -t wordpress srcs/requirements/wordpress/
-
-run_wordpress: wordpress
-	sudo docker run wordpress
-
-open_wordpress: wordpress
-	sudo docker run -it wordpress
+.PHONY: all re down clean
