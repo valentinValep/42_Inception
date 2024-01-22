@@ -3,10 +3,10 @@ service mysql start
 echo Set mysql server config
 sleep 1
 
-# SQL_DATABASE=INCEPTION_DB
+# SQL_DATABASE=Inception
 # SQL_USER=vlepille
-# SQL_PASSWORD=CACA
-# SQL_ROOT_PASSWORD=PIPI
+# SQL_PASSWORD=42Inception
+# SQL_ROOT_PASSWORD=42Inception
 
 mysql -e "CREATE DATABASE IF NOT EXISTS \`${SQL_DATABASE}\`;"
 
@@ -18,4 +18,4 @@ mysql -p$SQL_ROOT_PASSWORD -e "FLUSH PRIVILEGES;"
 
 echo Restart mysql server
 mysqladmin -u root -p$SQL_ROOT_PASSWORD shutdown
-service mysql start
+service mysql start -u root -p$SQL_ROOT_PASSWORD

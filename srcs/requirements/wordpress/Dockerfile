@@ -15,4 +15,6 @@ RUN mkdir /var/www && cd /var/www \
 COPY conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 COPY conf/wp-config.php /var/www/wordpress/wp-config.php
 
-# CMD [ "/usr/sbin/php-fpm7.3", "-F" ]
+RUN mkdir -p run/php
+
+CMD [ "/usr/sbin/php-fpm7.3", "-F" ]
