@@ -1,14 +1,23 @@
 all:
-	docker compose -f srcs/docker-compose.yml up -d --build
+	mkdir -p volumes/wordpress_vol volumes/mariadb_vol
+	sudo docker compose -f srcs/docker-compose.yml up -d --build
 
 stop:
-	docker compose -f srcs/docker-compose.yml stop
+	sudo docker compose -f srcs/docker-compose.yml stop
+
+up:
+	sudo docker compose -f srcs/docker-compose.yml up -d
 
 re: clean
-	docker compose -f srcs/docker-compose.yml up -d --build
+	make all
+
+re-zero: clean
+	sudo docker compose -f srcs/docker-compose.yml build --no-cache
+	sudo docker compose -f srcs/docker-compose.yml up -d
 
 clean: stop
-	docker compose -f srcs/docker-compose.yml down -v
-	-sudo docker image rm srcs-nginx srcs-wordpress srcs-mariadb
+	sudo rm -rf volumes/wordpress_vol volumes/mariadb_vol
+	sudo docker compose -f srcs/docker-compose.yml down -v
+	-sudo docker image rm inception:mariadb inception:wordpress inception:nginx
 
-.PHONY: all re down clean
+.PHONY: all re clean re-zero stop up

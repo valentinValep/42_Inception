@@ -17,4 +17,8 @@ COPY conf/wp-config.php /var/www/wordpress/wp-config.php
 
 RUN mkdir -p run/php
 
+EXPOSE 9000
+
+HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 CMD curl -f http://localhost:9000 || exit 1
+
 CMD [ "/usr/sbin/php-fpm7.3", "-F" ]

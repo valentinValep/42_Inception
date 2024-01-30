@@ -1,0 +1,13 @@
+# This is a sample .env file
+# You can use this file to set your environment variables
+# To use this file, rename it to .env and set the values
+# You can also set the values in the docker-compose.yml file
+
+DOMAIN_NAME=
+# certificates
+CERTS_=
+# MYSQL SETUP
+SQL_DATABASE=
+SQL_USER=
+SQL_PASSWORD=
+SQL_ROOT_PASSWORD=
