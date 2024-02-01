@@ -16,6 +16,6 @@ COPY conf/index.html /var/www/html/
 
 EXPOSE 443
 
-HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 CMD curl -f https://localhost || exit 1
+HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 CMD curl -k -f https://localhost || exit 1
 
 CMD [ "nginx", "-g", "daemon off;" ]
