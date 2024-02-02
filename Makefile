@@ -20,4 +20,10 @@ clean: stop
 	sudo docker compose -f srcs/docker-compose.yml down -v
 	-sudo docker image rm inception:mariadb inception:wordpress inception:nginx
 
-.PHONY: all re clean re-zero stop up
+ps:
+	sudo docker compose -f srcs/docker-compose.yml ps
+
+exec:
+	sudo docker exec -it $(c) bash
+
+.PHONY: all re clean re-zero stop up ps exec
