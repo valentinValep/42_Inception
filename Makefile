@@ -24,6 +24,7 @@ ps:
 	sudo docker compose -f srcs/docker-compose.yml ps
 
 exec:
-	sudo docker exec -it $(c) bash
+	@sudo docker exec -it $(c) bash 2> /dev/null || \
+		echo "Container $(c) not found. Tips: \"make exec c='container_name'\"";
 
 .PHONY: all re clean re-zero stop up ps exec

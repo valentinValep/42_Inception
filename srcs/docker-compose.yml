@@ -8,6 +8,12 @@ services:
     build:
       context: requirements/mariadb
       dockerfile: Dockerfile
+      args:
+        - SQL_DATABASE=${SQL_DATABASE}
+        - SQL_USER=${SQL_USER}
+        - SQL_PASSWORD=${SQL_PASSWORD}
+        - SQL_ROOT_PASSWORD=${SQL_ROOT_PASSWORD}
+        - DOMAIN_NAME=${DOMAIN_NAME}
     networks:
       - inception
     volumes:

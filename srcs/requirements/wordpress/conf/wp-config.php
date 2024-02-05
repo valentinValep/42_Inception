@@ -86,6 +86,11 @@ $table_prefix = 'wp_';
  */
 define('WP_DEBUG', false);
 
+/* Installation automatique de WordPress. */
+
+define('WP_SITEURL', 'http://' . getenv('DOMAIN_NAME') . '/');
+define('WP_HOME', 'http://' . getenv('DOMAIN_NAME') . '/');
+
 /* C’est tout, ne touchez pas à ce qui suit ! Bonne publication. */
 
 /** Chemin absolu vers le dossier de WordPress. */
