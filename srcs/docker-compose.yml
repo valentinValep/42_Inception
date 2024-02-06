@@ -60,13 +60,13 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '../volumes/mariadb_vol'
+      device: '/home/vlepille/data/mariadb_vol'
   wordpress_vol:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '../volumes/wordpress_vol'
+      device: '/home/vlepille/data/wordpress_vol'
 
 networks:
   inception:

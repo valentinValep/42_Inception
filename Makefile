@@ -1,22 +1,25 @@
 all:
-	mkdir -p volumes/wordpress_vol volumes/mariadb_vol
-	sudo docker compose -f srcs/docker-compose.yml up -d --build
+	mkdir -p /home/vlepille/data/wordpress_vol /home/vlepille/data/mariadb_vol
+	sudo docker compose -f srcs/docker-compose.yml up -d --build\
 
 stop:
 	sudo docker compose -f srcs/docker-compose.yml stop
 
 up:
+	mkdir -p /home/vlepille/data/wordpress_vol /home/vlepille/data/mariadb_vol
 	sudo docker compose -f srcs/docker-compose.yml up -d
 
 re: clean
 	make all
 
-re-zero: clean
+re-no-cache: clean
+	mkdir -p /home/vlepille/data/wordpress_vol /home/vlepille/data/mariadb_vol
 	sudo docker compose -f srcs/docker-compose.yml build --no-cache
 	sudo docker compose -f srcs/docker-compose.yml up -d
 
 clean: stop
-	sudo rm -rf volumes/wordpress_vol volumes/mariadb_vol
+	sudo rm -rf /home/vlepille/data/wordpress_vol /home/vlepille/data/mariadb_vol
+	mkdir -p /home/vlepille/data/wordpress_vol /home/vlepille/data/mariadb_vol
 	sudo docker compose -f srcs/docker-compose.yml down -v
 	-sudo docker image rm inception:mariadb inception:wordpress inception:nginx
 
