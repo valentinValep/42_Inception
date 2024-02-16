@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:bullseye
 
 # Set the environment variable for installation
 ARG SQL_DATABASE

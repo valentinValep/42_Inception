@@ -1,9 +1,9 @@
-FROM debian:buster
+FROM debian:bullseye
 
 # Install PHP and some tools
 RUN apt update; apt upgrade
 RUN apt install -y wget
-RUN apt install -y php7.3 php7.3-fpm php7.3-mysql
+RUN apt install -y php7.4 php7.4-fpm php7.4-mysql
 RUN apt install -y mariadb-client
 RUN apt install -y curl
 
@@ -14,7 +14,7 @@ RUN mkdir /var/www && cd /var/www \
 		&& rm wordpress-6.4.2-fr_FR.tar.gz
 
 # Configure PHP
-COPY conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
+COPY conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 COPY conf/wp-config.php /var/www/wordpress/wp-config.php
 
 RUN cd /root && \
@@ -31,6 +31,6 @@ COPY tools/install-wp.sh /root/install-wp.sh
 EXPOSE 9000
 
 # Healthcheck
-HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 CMD curl -f http://localhost:9000 || exit 1
+# HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 CMD curl -f http://localhost:9000 || exit 1
 
 CMD bash /root/install-wp.sh

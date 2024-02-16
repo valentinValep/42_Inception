@@ -3,4 +3,4 @@ wp core install --allow-root --url="$DOMAIN_NAME" --title="$WP_TITLE" --admin_us
 		--admin_password="$WP_ADMIN_PASSWORD" --admin_email="$WP_ADMIN_EMAIL" --path="/var/www/wordpress"
 
 # Running the PHP FastCGI Process Manager
-/usr/sbin/php-fpm7.3 -F
+/usr/sbin/php-fpm7.4 -F
